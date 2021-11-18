@@ -1,8 +1,8 @@
 # Grupo9
 
-## Normas de codigo
+# Normas de codigo
 
 
-# Nombre de variables
+- Nombre de variables
 
-# Comentarios
+- Comentarios
