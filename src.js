@@ -47,9 +47,6 @@ global.rangosO2 = [
 
 const registrarO2 = (value) => {
 
-    // rango_limite_inferior = global.rangosO2[0].de;
-    // rango_limite_superior = global.rangosO2[0].hasta;
-
     if (value >= global.rangosO2[0].de && value <= global.rangosO2[0].hasta) {
         console.log(global.rangosO2[0].etiqueta);
     }
