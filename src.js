@@ -104,4 +104,5 @@ registrarO2(10);
 
 module.exports.registrarCO = registrarCO;
 module.exports.registrarO2 = registrarO2;
+module.exports.registrarHC = registrarHC;
 // module.exports.calcularPorcentajes = calcularPorcentajes;
