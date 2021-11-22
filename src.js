@@ -45,7 +45,6 @@ const registrarCO = (value) => {
     for (const element of global.rangosCO) {
         lst = Object.values(element); 
         if (value >= lst[1] && value <= lst[2]) {
-            fueraRango = false;
             return lst[0];
         } 
     }
