@@ -73,23 +73,24 @@ global.rangosHC = [
 ]
 
 const registrarHC = value => {
-let estandarDesde = global.rangosHC[0].de; 
-let estandarHasta = global.rangosHC[0].hasta;
-let etiquetaEstandar = global.rangosHC[0].etiqueta; 
-let fueraRangoEtiqueta = global.rangosHC[1].etiqueta; 
-let fueraDeRangoDesde = global.rangosHC[1].de; 
-let fueraDeRangoHasta = global.rangosHC[1].hasta; 
-    if(value >= estandarDesde && value <= estandarHasta){ 
-        console.log(etiquetaEstandar); 
-        return etiquetaEstandar; 
-    }
-    else if (value >= fueraDeRangoDesde && value <= fueraDeRangoHasta){ 
-    
-        return fueraRangoEtiqueta 
-        
-    } else {
-        return "fuera_de_rango" 
-    }
+     
+     let estandarDesde = global.rangosHC[0].de; 
+     let estandarHasta = global.rangosHC[0].hasta;
+     let etiquetaEstandar = global.rangosHC[0].etiqueta; 
+     let fueraRangoEtiqueta = global.rangosHC[1].etiqueta; 
+     let fueraDeRangoDesde = global.rangosHC[1].de; 
+     let fueraDeRangoHasta = global.rangosHC[1].hasta; 
+     
+          if(value >= estandarDesde && value <= estandarHasta)
+          { 
+               console.log(etiquetaEstandar); 
+               return etiquetaEstandar; 
+               }
+         else if (value >= fueraDeRangoDesde && value <= fueraDeRangoHasta){
+              return fueraRangoEtiqueta 
+         } else {
+              return "fuera_de_rango" 
+         }
 }
 
 
