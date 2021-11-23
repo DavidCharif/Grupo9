@@ -119,9 +119,13 @@ const registrarO2 = (value) => {
         //console.log(global.rangosO2[0].etiqueta);
         return global.rangosO2[0].etiqueta;
     }
-    else {
+    else if (value >= global.rangosO2[1].de && value <= global.rangosO2[1].hasta) {
         //console.log(global.rangosO2[1].etiqueta);
         return global.rangosO2[1].etiqueta;
+    }
+    else {
+        //console.log(global.rangosO2[1].etiqueta);
+        return "fuera_de_rango";
     }
 }
 
