@@ -64,11 +64,14 @@ global.rangosCO2 = [
 const registrarCO2 = (value) => {
 
     if (value >= global.rangosCO2[0].de && value <= global.rangosCO2[0].hasta) {
-        console.log(global.rangosCO2[0].etiqueta);
+        return global.rangosCO2[0].etiqueta;
+    }else if (value >= global.rangosCO2[1].de && value <= global.rangosCO2[1].hasta) {
+        return global.rangosCO2[1].etiqueta;
     } else {
-        console.log(global.rangosCO2[1].etiqueta);
+        return "fuera_de_rango";
     }
 }
+
 /*
 David
 */
@@ -99,7 +102,6 @@ const registrarHC = value => {
             return "fuera_de_rango" 
         }
 }
-
 
 /*
 Germán
