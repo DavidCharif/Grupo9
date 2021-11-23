@@ -1,11 +1,11 @@
-/* Historia de usuario 3 */ 
+/* Historia de usuario 3 */
 const calcularPocentajes=  (limiteCO, limiteCO2, limiteHC, limiteO2, valorCO, valorCO2, valorHC, valorO2) => {
-    
+
     let porcentajeCO;
     let porcentajeCO2;
     let porcentajeHC;
     let porcentajeO2;
-    
+
     if (limiteCO !== 0) {
         porcentajeCO = (valorCO * 100) / limiteCO;
     } else {
@@ -31,7 +31,7 @@ const calcularPocentajes=  (limiteCO, limiteCO2, limiteHC, limiteO2, valorCO, va
 }
 
 
-/* Historia de usuario 4 */ 
+/* Historia de usuario 4 */
 /*
 Jennifer
 */
@@ -41,16 +41,16 @@ global.rangosCO = [
 ]
 
 const registrarCO = (value) => {
-    
+
     for (const element of global.rangosCO) {
-        lst = Object.values(element); 
+        lst = Object.values(element);
         if (value >= lst[1] && value <= lst[2]) {
             return lst[0];
-        } 
+        }
     }
     return "fuera_de_rango";
-    
-    
+
+
 }
 
 /*
@@ -83,23 +83,23 @@ global.rangosHC = [
 ]
 
 const registrarHC = value => {
-    
-    let estandarDesde = global.rangosHC[0].de; 
+
+    let estandarDesde = global.rangosHC[0].de;
     let estandarHasta = global.rangosHC[0].hasta;
-    let etiquetaEstandar = global.rangosHC[0].etiqueta; 
-    let fueraRangoEtiqueta = global.rangosHC[1].etiqueta; 
-    let fueraDeRangoDesde = global.rangosHC[1].de; 
-    let fueraDeRangoHasta = global.rangosHC[1].hasta; 
-    
+    let etiquetaEstandar = global.rangosHC[0].etiqueta;
+    let fueraRangoEtiqueta = global.rangosHC[1].etiqueta;
+    let fueraDeRangoDesde = global.rangosHC[1].de;
+    let fueraDeRangoHasta = global.rangosHC[1].hasta;
+
         if(value >= estandarDesde && value <= estandarHasta)
-        { 
-            console.log(etiquetaEstandar); 
-            return etiquetaEstandar; 
+        {
+            console.log(etiquetaEstandar);
+            return etiquetaEstandar;
             }
         else if (value >= fueraDeRangoDesde && value <= fueraDeRangoHasta){
-            return fueraRangoEtiqueta 
+            return fueraRangoEtiqueta
         } else {
-            return "fuera_de_rango" 
+            return "fuera_de_rango"
         }
 }
 
@@ -116,10 +116,12 @@ global.rangosO2 = [
 const registrarO2 = (value) => {
 
     if (value >= global.rangosO2[0].de && value <= global.rangosO2[0].hasta) {
-        console.log(global.rangosO2[0].etiqueta);
+        //console.log(global.rangosO2[0].etiqueta);
+        return global.rangosO2[0].etiqueta;
     }
     else {
-        console.log(global.rangosO2[1].etiqueta);
+        //console.log(global.rangosO2[1].etiqueta);
+        return global.rangosO2[1].etiqueta;
     }
 }
 
