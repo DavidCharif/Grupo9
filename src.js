@@ -121,7 +121,7 @@ const registrarO2 = (value) => {
     }
     else {
         //console.log(global.rangosO2[1].etiqueta);
-        return global.rangosO2[1].etiqueta;
+        return "fuera_de_rango";
     }
 }
 
