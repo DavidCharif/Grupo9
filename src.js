@@ -115,12 +115,7 @@ global.rangosO2 = [
 
 const registrarO2 = (value) => {
 
-    if (value >= global.rangosO2[0].de && value <= global.rangosO2[0].hasta) {
-        console.log(global.rangosO2[0].etiqueta);
-    }
-    else {
-        console.log(global.rangosO2[1].etiqueta);
-    }
+    
 }
 
 // registrarO2(10);
