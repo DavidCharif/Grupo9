@@ -95,29 +95,23 @@ David
 */
 //RegistrarCO2
 // Arreglo global para la comparacion de los valores
-global.rangosHC = [
-    {etiqueta: 'Parametro HC en rango estandar', de: 0, hasta: 10000},
-    {etiqueta: 'Parametro HC fuera de rango', de: 10001, hasta: 11000}
-]
+const registrarHC = async value => {
+    let response = await fetch("https://misiontic2022upb.vercel.app/api/emission-measurement/limits");
+    let limits = await response.json();
+    let limitesHC = limits[2]
 
-const registrarHC = value => {
-
-    let estandarDesde = global.rangosHC[0].de;
-    let estandarHasta = global.rangosHC[0].hasta;
-    let etiquetaEstandar = global.rangosHC[0].etiqueta;
-    let fueraRangoEtiqueta = global.rangosHC[1].etiqueta;
-    let fueraDeRangoDesde = global.rangosHC[1].de;
-    let fueraDeRangoHasta = global.rangosHC[1].hasta;
-
+    let estandarDesde = limitesHC.de; 
+    let estandarHasta = limitesHC.hasta;
+    let etiquetaEstandar = "Parametro HC en rango estandar" ;
+  
+    
         if(value >= estandarDesde && value <= estandarHasta)
-        {
-            console.log(etiquetaEstandar);
-            return etiquetaEstandar;
+        { 
+            console.log(etiquetaEstandar); 
+            return etiquetaEstandar; 
             }
-        else if (value >= fueraDeRangoDesde && value <= fueraDeRangoHasta){
-            return fueraRangoEtiqueta
-        } else {
-            return "fuera_de_rango"
+       else {
+            return "fuera_de_rango" 
         }
 }
 
