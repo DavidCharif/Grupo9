@@ -1,28 +1,31 @@
-/* Historia de usuario 3 */ 
-const calcularPocentajes=  (limiteCO, limiteCO2, limiteHC, limiteO2, valorCO, valorCO2, valorHC, valorO2) => {
-    
+/* Historia de usuario 3 */
+const calcularPocentajes = async (valorCO, valorCO2, valorHC, valorO2) => {
+
+    let response = await fetch("https://misiontic2022upb.vercel.app/api/emission-measurement/limits");
+    let limits = await response.json();
+
     let porcentajeCO;
     let porcentajeCO2;
     let porcentajeHC;
     let porcentajeO2;
-    
-    if (limiteCO !== 0) {
-        porcentajeCO = (valorCO * 100) / limiteCO;
+
+    if (limits[0] !== 0) {
+        porcentajeCO = (valorCO * 100) / limits[0];
     } else {
         porcentajeCO = 0
     }
-    if (limiteCO2 !== 0) {
-        porcentajeCO2 = (valorCO2 * 100) / limiteCO2;
+    if (limits[1] !== 0) {
+        porcentajeCO2 = (valorCO2 * 100) / limits[1];
     } else {
         porcentajeCO2 = 0
     }
-    if (limiteHC !== 0) {
-        porcentajeHC = (valorHC * 100) / limiteHC;
+    if (limits[2] !== 0) {
+        porcentajeHC = (valorHC * 100) / limits[2];
     } else {
         porcentajeHC = 0
     }
-    if (limiteO2 !== 0) {
-        porcentajeO2 = (valorO2 * 100) / limiteO2;
+    if (limits[3] !== 0) {
+        porcentajeO2 = (valorO2 * 100) / limits[3];
     } else {
         porcentajeO2 = 0
     }
@@ -31,26 +34,29 @@ const calcularPocentajes=  (limiteCO, limiteCO2, limiteHC, limiteO2, valorCO, va
 }
 
 
-/* Historia de usuario 4 */ 
+/* Historia de usuario 4 */
 /*
 Jennifer
 */
-global.rangosCO = [
-    {etiqueta: 'Parametro CO en rango estandar', de: 0, hasta: 10},
-    {etiqueta: 'Parametro CO fuera de rango', de: 11, hasta: 15}
-]
+// global.rangosCO = [
+//     {etiqueta: 'Parametro CO en rango estandar', de: 0, hasta: 10},
+//     {etiqueta: 'Parametro CO fuera de rango', de: 11, hasta: 15}
+// ]
 
-const registrarCO = (value) => {
-    
-    for (const element of global.rangosCO) {
-        lst = Object.values(element); 
+const registrarCO = async (value) => {
+    let response = await fetch("https://misiontic2022upb.vercel.app/api/emission-measurement/ranges-parameters");
+    let rangosCO = await response.json();
+    let candidate = rangosCO[0];
+
+    for (const element of candidate) {
+        lst = Object.values(element);
         if (value >= lst[1] && value <= lst[2]) {
             return lst[0];
-        } 
+        }
     }
     return "fuera_de_rango";
-    
-    
+
+
 }
 
 /*
@@ -83,23 +89,23 @@ global.rangosHC = [
 ]
 
 const registrarHC = value => {
-    
-    let estandarDesde = global.rangosHC[0].de; 
+
+    let estandarDesde = global.rangosHC[0].de;
     let estandarHasta = global.rangosHC[0].hasta;
-    let etiquetaEstandar = global.rangosHC[0].etiqueta; 
-    let fueraRangoEtiqueta = global.rangosHC[1].etiqueta; 
-    let fueraDeRangoDesde = global.rangosHC[1].de; 
-    let fueraDeRangoHasta = global.rangosHC[1].hasta; 
-    
+    let etiquetaEstandar = global.rangosHC[0].etiqueta;
+    let fueraRangoEtiqueta = global.rangosHC[1].etiqueta;
+    let fueraDeRangoDesde = global.rangosHC[1].de;
+    let fueraDeRangoHasta = global.rangosHC[1].hasta;
+
         if(value >= estandarDesde && value <= estandarHasta)
-        { 
-            console.log(etiquetaEstandar); 
-            return etiquetaEstandar; 
+        {
+            console.log(etiquetaEstandar);
+            return etiquetaEstandar;
             }
         else if (value >= fueraDeRangoDesde && value <= fueraDeRangoHasta){
-            return fueraRangoEtiqueta 
+            return fueraRangoEtiqueta
         } else {
-            return "fuera_de_rango" 
+            return "fuera_de_rango"
         }
 }
 
@@ -114,8 +120,18 @@ global.rangosO2 = [
 ]
 
 const registrarO2 = (value) => {
-
-    
+    if (value >= global.rangosO2[0].de && value <= global.rangosO2[0].hasta) {
+        //console.log(global.rangosO2[0].etiqueta);
+        return global.rangosO2[0].etiqueta;
+    }
+    else if (value >= global.rangosO2[1].de && value <= global.rangosO2[1].hasta) {
+        //console.log(global.rangosO2[1].etiqueta);
+        return global.rangosO2[1].etiqueta;
+    }
+    else {
+        //console.log(global.rangosO2[1].etiqueta);
+        return "fuera_de_rango";
+    }
 }
 
 // registrarO2(10);
