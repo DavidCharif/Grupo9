@@ -1,6 +1,6 @@
 /* Import Modules */
 // node-fetch permite hacer peticiones a una API en NodeJS. La FetchAPI solo sirve para peticiones en el navegador (como en un cliente frontend)
-// const fetch = require('node-fetch'); // Se debe comentar para cargar al bot
+const fetch = require('node-fetch'); // Se debe comentar para cargar al bot
 
 /* Historia de usuario 3 */
 const calcularPocentajes = async (valorCO, valorCO2, valorHC, valorO2) => {
@@ -14,22 +14,22 @@ const calcularPocentajes = async (valorCO, valorCO2, valorHC, valorO2) => {
     let porcentajeO2;
 
     if (limits[0] !== 0) {
-        porcentajeCO = (valorCO * 100) / limits[0];
+        porcentajeCO = (valorCO * limits[0]) /100 ;
     } else {
         porcentajeCO = 0
     }
     if (limits[1] !== 0) {
-        porcentajeCO2 = (valorCO2 * 100) / limits[1];
+        porcentajeCO2 = (valorCO2 * limits[1]) / 100;
     } else {
         porcentajeCO2 = 0
     }
     if (limits[2] !== 0) {
-        porcentajeHC = (valorHC * 100) / limits[2];
+        porcentajeHC = (valorHC * limits[2]) / 100;
     } else {
         porcentajeHC = 0
     }
     if (limits[3] !== 0) {
-        porcentajeO2 = (valorO2 * 100) / limits[3];
+        porcentajeO2 = (valorO2 * limits[3]) / 100;
     } else {
         porcentajeO2 = 0
     }
