@@ -1,6 +1,6 @@
 /* Import Modules */
 // node-fetch permite hacer peticiones a una API en NodeJS. La FetchAPI solo sirve para peticiones en el navegador (como en un cliente frontend)
-const fetch = require('node-fetch'); // Se debe comentar para cargar al bot
+// const fetch = require('node-fetch'); // Se debe comentar para cargar al bot
 
 /* Historia de usuario 3 */
 const calcularPocentajes = async (valorCO, valorCO2, valorHC, valorO2) => {
@@ -51,20 +51,25 @@ Jennifer
 // ]
 
 const registrarCO = async (value) => {
-    let response = await fetch("https://misiontic2022upb.vercel.app/api/emission-measurement/ranges-parameters");
-    let rangosCO = await response.json();
-    let candidate = rangosCO[0];
 
-    for (const element of candidate) {
-        lst = Object.values(element);
-        if (value >= lst[1] && value <= lst[2]) {
-            return lst[0];
-        }
+    let response = await fetch(urlRangos)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+
+    let rangosCO = response[0];
+    
+    if (value >= rangosCO.de && value <= rangosCO.hasta) {
+        return 'Parametro CO en rango estandar';
     }
-    return "fuera_de_rango";
-
-
+    else if (value >= 11 && value <= 15) {
+        return 'Parametro CO fuera de rango';
+    }
+    else {
+        return "fuera_de_rango";
+    }
 }
+
+// registrarCO(16)
 
 /*
 Daniela
@@ -149,7 +154,7 @@ const registrarO2 = async (value) => {
     }
 }
 
-//registrarO2(52);
+// registrarO2(52);
 
 module.exports.calcularPocentajes = calcularPocentajes;
 module.exports.registrarCO = registrarCO;
