@@ -1,3 +1,7 @@
+/* Import Modules */
+// node-fetch permite hacer peticiones a una API en NodeJS. La FetchAPI solo sirve para peticiones en el navegador (como en un cliente frontend)
+const fetch = require('node-fetch'); // Se debe comentar para cargar al bot
+
 /* Historia de usuario 3 */
 const calcularPocentajes=  (limiteCO, limiteCO2, limiteHC, limiteO2, valorCO, valorCO2, valorHC, valorO2) => {
 
@@ -32,6 +36,9 @@ const calcularPocentajes=  (limiteCO, limiteCO2, limiteHC, limiteO2, valorCO, va
 
 
 /* Historia de usuario 4 */
+const urlRangos = "https://misiontic2022upb.vercel.app/api/emission-measurement/ranges-parameters";
+
+
 /*
 Jennifer
 */
@@ -108,28 +115,35 @@ Germán
 */
 
 // Registrar O2
-global.rangosO2 = [
-    {etiqueta: 'Parametro O2 en rango estandar', de: 0, hasta: 22},
-    {etiqueta: 'Parametro O2 fuera de rango', de: 23, hasta: 30}
-]
+// global.rangosO2 =
+// [
+//     {etiqueta: 'Parametro O2 en rango estandar', de: 0, hasta: 22},
+//     {etiqueta: 'Parametro O2 fuera de rango', de: 23, hasta: 30}
+// ]
 
-const registrarO2 = (value) => {
+const registrarO2 = async (value) => {
 
-    if (value >= global.rangosO2[0].de && value <= global.rangosO2[0].hasta) {
-        //console.log(global.rangosO2[0].etiqueta);
-        return global.rangosO2[0].etiqueta;
+    let response = await fetch(urlRangos)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+
+    let rangosO2 = response[3] //Oxigeno
+
+    if (value >= rangosO2.de && value <= rangosO2.hasta) {
+        // console.log('Parametro O2 en rango estandar');
+        return 'Parametro O2 en rango estandar';
     }
-    else if (value >= global.rangosO2[1].de && value <= global.rangosO2[1].hasta) {
-        //console.log(global.rangosO2[1].etiqueta);
-        return global.rangosO2[1].etiqueta;
+    else if (value >= 23 && value <= 30) {
+        // console.log('Parametro O2 fuera de rango');
+        return 'Parametro O2 fuera de rango';
     }
     else {
-        //console.log(global.rangosO2[1].etiqueta);
+        // console.log("fuera_de_rango");
         return "fuera_de_rango";
     }
 }
 
-// registrarO2(10);
+//registrarO2(52);
 
 module.exports.calcularPocentajes = calcularPocentajes;
 module.exports.registrarCO = registrarCO;

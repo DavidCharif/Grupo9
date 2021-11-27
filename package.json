@@ -1,0 +1,24 @@
+{
+  "name": "Grupo9",
+  "version": "1.0.0",
+  "description": "- Nombre de variables",
+  "main": "src.js",
+  "dependencies": {
+    "node-fetch": "^2.6.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/german-arq/Grupo9.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/german-arq/Grupo9/issues"
+  },
+  "homepage": "https://github.com/german-arq/Grupo9#readme"
+}
