@@ -1,6 +1,6 @@
 /* Import Modules */
 // node-fetch permite hacer peticiones a una API en NodeJS. La FetchAPI solo sirve para peticiones en el navegador (como en un cliente frontend)
-const fetch = require('node-fetch'); // Se debe comentar para cargar al bot
+//const fetch = require('node-fetch'); // Se debe comentar para cargar al bot
 
 /* Historia de usuario 3 */
 const calcularPocentajes = async (valorCO, valorCO2, valorHC, valorO2) => {
@@ -33,8 +33,8 @@ const calcularPocentajes = async (valorCO, valorCO2, valorHC, valorO2) => {
     } else {
         porcentajeO2 = 0
     }
-    let objetoReturn = {"porcentajeCO":porcentajeCO,"porcentajeCO2":porcentajeCO2,"porcentajeHC":porcentajeHC,"porcentajeO2" : porcentajeO2};
-    return objetoReturn;
+    let objetoReturn = {porcentajeCO, porcentajeCO2, porcentajeHC, porcentajeO2};
+    return objetoReturn; 
 }
 
 
@@ -74,17 +74,23 @@ const registrarCO = async (value) => {
 /*
 Daniela
 */
-global.rangosCO2 = [
+/* global.rangosCO2 = [
     {etiqueta: 'Parametro CO2 en rango estandar', de: 0, hasta: 20},
     {etiqueta: 'Parametro CO2 fuera de rango', de: 21, hasta: 30}
-]
+] */
 
-const registrarCO2 = (value) => {
+const registrarCO2 = async (value) => {
 
-    if (value >= global.rangosCO2[0].de && value <= global.rangosCO2[0].hasta) {
-        return global.rangosCO2[0].etiqueta;
-    }else if (value >= global.rangosCO2[1].de && value <= global.rangosCO2[1].hasta) {
-        return global.rangosCO2[1].etiqueta;
+    let response = await fetch('https://misiontic2022upb.vercel.app/api/emission-measurement/ranges-parameters')
+        .then(response => response.json())
+        .catch(error => alert("Error"));
+
+    let rangosCO2 = response[1];
+
+    if (value >= rangosCO2.de && value <= rangosCO2.hasta) {
+        return 'Parametro CO2 en rango estandar';
+    }else if (value < rangosCO2.de && value > rangosCO2.hasta) {
+        return 'Parametro CO2 fuera de rango';
     } else {
         return "fuera_de_rango";
     }
@@ -96,7 +102,7 @@ David
 //RegistrarCO2
 // Arreglo global para la comparacion de los valores
 const registrarHC = async value => {
-    let response = await fetch("https://misiontic2022upb.vercel.app/api/emission-measurement/limits");
+    let response = await fetch("https://misiontic2022upb.vercel.app/api/emission-measurement/ranges-parameters");
     let limits = await response.json();
     let limitesHC = limits[2]
 
