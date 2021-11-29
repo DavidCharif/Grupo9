@@ -74,17 +74,23 @@ const registrarCO = async (value) => {
 /*
 Daniela
 */
-global.rangosCO2 = [
+/* global.rangosCO2 = [
     {etiqueta: 'Parametro CO2 en rango estandar', de: 0, hasta: 20},
     {etiqueta: 'Parametro CO2 fuera de rango', de: 21, hasta: 30}
-]
+] */
 
-const registrarCO2 = (value) => {
+const registrarCO2 = async (value) => {
+
+    let response = await fetch('https://misiontic2022upb.vercel.app/api/emission-measurement/ranges-parameters')
+        .then(response => response.json())
+        .catch(error => alert("Error"));
+
+    let rangosCO2 = response[1];
 
     if (value >= global.rangosCO2[0].de && value <= global.rangosCO2[0].hasta) {
-        return global.rangosCO2[0].etiqueta;
-    }else if (value >= global.rangosCO2[1].de && value <= global.rangosCO2[1].hasta) {
-        return global.rangosCO2[1].etiqueta;
+        return 'Parametro CO2 en rango estandar';
+    }else if (value < global.rangosCO2[0].de && value > global.rangosCO2[0].hasta) {
+        return 'Parametro CO2 fuera de rango';
     } else {
         return "fuera_de_rango";
     }
