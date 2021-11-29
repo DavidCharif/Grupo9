@@ -6,7 +6,6 @@
   "dependencies": {
     "node-fetch": "^2.6.6"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node src"
   },
