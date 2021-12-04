@@ -15,6 +15,8 @@ app.get("/api/emission-measurement/limits", (req, res) => {
 });
 
 app.post("/api/emission-measurement/ranges_parameters", (req, res) => {
+  ranges_parameters.push(req.body);
+  res.json(ranges_parameters);
 
 });
 
