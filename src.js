@@ -18,8 +18,6 @@ app.post("/api/emission-measurement/ranges_parameters", (req, res) => {
 
 });
 
-app.post("/api/emission-measurement/limits", (req, res) => {
 
-});
 
 module.exports = app;
