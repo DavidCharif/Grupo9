@@ -5,10 +5,11 @@
   "main": "src.js",
   "dependencies": {
     "express": "^4.17.1",
-    "node-fetch": "^2.6.6"
+    "node-fetch": "^2.6.6",
+    "nodemon": "^2.0.15"
   },
   "scripts": {
-    "start": "node src"
+    "start": "nodemon src.js"
   },
   "repository": {
     "type": "git",
